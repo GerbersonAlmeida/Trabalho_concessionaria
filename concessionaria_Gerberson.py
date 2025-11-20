@@ -1,8 +1,22 @@
-#Codigo para iniciar o atendimento:
-    #codigo para fazer cadastro, necessario criar um objeto para guardar os dados cadstrados
 #função para criar linha
 def criar_linha():
     print(128 * "_")
+    
+
+    
+#Codigo para iniciar o atendimento:
+criar_linha()
+print("\n",30 * " ", "CADASTRO DE CLIENTE")
+cadastrar_cliente = {}
+nome =
+cadastrar_cliente[nome] = input("Digite o nome do cliente: ")
+numero = input("Informe o telefone para contato: ")
+saldo = input("Informe o saldo disponivel para negociar: ")
+
+print(cadastrar_cliente[nome])
+    
+        
+    #codigo para fazer cadastro, necessario criar um objeto para guardar os dados cadstrados
 #cliente = input("Digite o nome do cliente: ")
 #cpf = input("Digite o cpf do usuário: ")
 criar_linha()
