@@ -14,30 +14,30 @@ def menu():
 #Função usada para que o usuario nao digite seus dados errados
 def cadastro_cliente():
     while True:
-        cadastro['nome'] = input("Digite o nome do cliente: ").title().strip()
+        cadastro['Nome'] = input("Digite o nome do cliente: ").title().strip()
         while True:
-            cadastro['Telefone'] = input("Número para contato com DDD e 9 digitos: ").strip()
+            telefone = input("Número para contato com DDD e 9 digitos: ").strip()
             print() #print vazio sendo utilizado apenas para pular linha
             
-            if cadastro['Telefone'].isdigit() and len(cadastro['Telefone']) == 11: #if utilizado para conferir se se trata de apenas números para ser valido como telefone
+            if telefone.isdigit() and len(telefone) == 11: #if utilizado para conferir se se trata de apenas números para ser valido como telefone
                 break                                                   #Um len() foi utilizado para ver se o número digitado se tem a quantidade correta de números
-            elif cadastro['Telefone'].isdigit() and len(cadastro['Telefone']) != 11:
+            elif telefone.isdigit() and len(telefone) != 11:
                 print("O número de telefone digitado parece estar faltando digitos, \ninforme o número de elefone com DDD")
                 print()
             else:
                 print("O valor digitado não é um número de telefone, informe o número de telefone")
                 print()
         while True:    
-            cadastro['saldo'] = input("Informe o saldo disponivel para negociar R$: ")
-            if cadastro['saldo'].isdigit():
-                saldo = cadastro['saldo']
-                cadastro['saldo'] :  float(saldo)
-                print(cadastro['saldo'])
+            saldo = input("Informe o saldo disponivel para negociar R$: ")
+            if saldo.isdigit():
+                saldo = float(saldo) #Transformando o valor string em float
                 break
             else:
-                print("Valor digitado não parece ser um saldo,\n por favor digite o saldo disponivel para continuarmos!")
+                print("\nValor digitado não parece ser um saldo,\npor favor digite o saldo disponivel para continuarmos!")
                 print()
-
+        cadastro['Saldo'] = saldo
+        cadastro['Telefone'] = telefone
+        
         break
 
     
@@ -65,27 +65,34 @@ mostrar_titulo("CADASTRO DE CLIENTES")
 while True:
     cadastro_cliente()
     #estrutura de repetição criada para mostrar os dados cadastrado
-    
-    for k, v in cadastro.items():
-        print(f"{k} = {v}")
-        decisao = input("Os dados informados estâo corretos: [S/N] ").capitalize()
-        if decisao == "S":
-            mostrar_linha()
-            print(" " * 30, "DADOS CADASTRADOS COM SUCESSO!!\n")
+    mostrar_titulo("REVISÃO DE DADOS DO CLIENTE")
+    print(f"\n{30 * " "}Nome = {cadastro['Nome']}")
+    print(f"{30 * " "}Telefone = {cadastro['Telefone']}")
+    print(f"{30 * " "}Saldo = R${cadastro['Saldo']:.2f}\n")
+    decisao = input("Os dados informados estâo corretos: [S/N] ").capitalize()
+    if decisao == "S":
+        mostrar_linha()
+        print(" " * 30, "DADOS CADASTRADOS COM SUCESSO!!\n")
 
             #Mostrando os dados finais do cliente
-            for k, v in cadastro.items():
-                print(f"{" " * 30} {k} = {v}")
-            break
+        print(f"{30 * " "}Nome = {cadastro['Nome']}")
+        print(f"{30 * " "}Telefone = {cadastro['Telefone']}")
+        print(f"{30 * " "}Saldo = R${cadastro['Saldo']:.2f}")
+        break
         #Se incorreto os dados esse else vai deletar os dados guardados no dicionario cadastro
-        else:
-            print("Digite novamente os dados do cliente!")
-            del cadastro["Nome"]
-            del cadastro["Saldo"]
-            del cadastro["Telefone"]
-            mostrar_linha()
+    elif decisao == "N":
+        print("Digite novamente os dados do cliente!")
+        del cadastro["Nome"]
+        del cadastro["Saldo"]
+        del cadastro["Telefone"]
+        mostrar_linha()
+    
+    else:
+        print("\nOpção invalida, por favor digite apenas [S ou N]!")
+        mostrar_linha()
+        print()
 
-    break
+
 #Lista para guardar os dicionarios dos carros contendo: marca, modelo e km
         
 '''
