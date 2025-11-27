@@ -94,7 +94,7 @@ while True:
 
 
 #Lista para guardar os dicionarios dos carros contendo: marca, modelo e km
-        
+mostrar_linha()        
 '''
 mostrar_linha()
 #Codigo para escolher o tipo de transação
