@@ -8,8 +8,8 @@ def mostrar_titulo(titulo):
 
 #função para mostrar menú
 def menu():
-    print(f" {30 * "="} {"ESCOLHA QUAL OPERÇÃO VOCÊ DESEJA APLICAR:\n"} {30 * "="}")
-    print(f" {30 * " "} {"\n1 - COMPRAR\n2 - VENDER\n3 - ALUGAR\n 0 - SAIR\n"} {30 * "="}")
+    print(f"{30 * "="} {"ESCOLHA QUAL OPERÇÃO VOCÊ DESEJA APLICAR:"} {30 * "="}\n")
+    print(f"{30 * " "}1 - COMPRAR\n{30 * " "}2 - VENDER\n{30 * " "}3 - ALUGAR\n{30 * " "}0 - SAIR\n")
 
 #Função usada para que o usuario nao digite seus dados errados
 def cadastro_cliente():
@@ -40,20 +40,56 @@ def cadastro_cliente():
         
         break
 
+def marcas():
+    mostrar_titulo("MARCAS DISPONIVEIS")
+
+    for marca in fipe.keys():
+        print("")
+
+
     
 carros = [{
           'id' :'001',# id 001 serão carros a venda 
           'Marca' : "Chevrolet",
           'Modelo' : 'Onix',
-          'ano' : '2022',
-          'km' : 1000
+          'Ano' : '2022'
         }, 
         {
           'id': '001',
           'Marca' : "Chevrolet",
           'Modelo' : 'Onix',
-          'km' : 10000
+          'Ano' : 2023
         }]
+
+fipe = [
+    {
+        'Chevrolet' : [
+            {'Onix': 69677},
+            {'Tracker': 119000},
+            {'S10': 239500},
+            {'Cruze': 155000},
+            {'Spin': 105000},
+            {'Montana': 134490},
+            {'Equinox': 189990}
+        ],
+        'Volksvagen' : [
+            {'Gol': 58990},
+            {'Voyage': 75590},
+            {'Nivus': 105190},
+            {'Polo': 85290},
+            {'T-Cross': 125000},
+            {'Amarok': 295000}
+        ],
+        'Hyundai' : [
+            {'HB20': 72340},
+            {'Creta': 135990},
+            {'Tucson': 199990},
+            {'Azera': 225000},
+            {'Santa Fe': 310000}                  
+        ]
+    },
+]
+print(fipe)
 # Dicionario vazio criado para guardar temporariamente o cadastro do cliente
 cadastro = {
 
@@ -95,20 +131,30 @@ while True:
 
 #Lista para guardar os dicionarios dos carros contendo: marca, modelo e km
 mostrar_linha()        
-'''
+
 mostrar_linha()
 #Codigo para escolher o tipo de transação
 mostrar_titulo(" MENÚ DE TRANSAÇÃO ")
 print("\n\n1 - Comprar\n 2 - Vender\n 3 - alugar\n 0 - cancelar\n\n")
 mostrar_linha()
-menu = int(input("Escolha uma das opções acima: "))
+menu1 = int(input("Escolha uma das opções acima: "))
 while True:
     menu()
-    match menu:
+    match menu1:
         case 1:
+            ''' Venda de Veículos (Cliente → Empresa)
+            • O cliente informa marca e modelo do veículo.
+            • O sistema consulta o valor FIPE (armazenado em um dicionário).
+            • A proposta da empresa deve ser o valor FIPE com 12% de desconto.
+            • Se o cliente aceitar, o valor é adicionado ao saldo e o veículo entra na lista da empresa'''
             while True:
-                
-        case 2:
+                while True:
+                    marca_cliente = input(f"Informe qual é a marca do veiculo a ser vendido: ").captalize()
+                    if marca_cliente in fipe.values():
+                        print("ENCONTRADO")
+                    break
+                break
+''' case 2:
             while True:
 
         case 3:
@@ -120,4 +166,4 @@ while True:
 
 #Codigo para mostrar os modelos disponiveis para compra
 #Código para mostrar os modelos disponivies para aluguel 
-#Codigo para mostrar o valor pelo qual será recebido o veiculo usado na troca ou na venda. '''
+#Codigo para mostrar o valor pelo qual será recebido o veiculo usado na troca ou na venda.'''
