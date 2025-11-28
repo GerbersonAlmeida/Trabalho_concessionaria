@@ -57,20 +57,103 @@ def marcas(texto):
         i += 1
     print(f"{" " * 30}0 - Sair")
     
-carros = [{
-          'id' :'001',# id 001 serão carros a venda 
-          'Marca' : "Chevrolet",
-          'Modelo' : 'Onix',
-          'Ano' : 2022
-        }, 
-        {
-          'id': '001',
-          'Marca' : "Chevrolet",
-          'Modelo' : 'Onix',
-          'Ano' : 2023
-        }]
+carros = [
+    {# Chevrolet
+        'Marca' : "Chevrolet",
+        'Modelo' : 'Onix',
+        'Ano' : 2022
+    }, 
+    {
+        'Marca' : "Chevrolet",
+        'Modelo' : 'Onix',
+        'Ano' : 2023
+    },
+    {
+        'Marca' : "Chevrolet",
+        'Modelo' : 'S10',
+        'Ano' : 2024
+    },
+    {
+        'Marca' : "Chevrolet",
+        'Modelo' : 'Cruze',
+        'Ano' : 2022
+    },
+    {
+        'Marca' : "Chevrolet",
+        'Modelo' : 'Spin',
+        'Ano' : 2023
+    },
+    {
+        'Marca' : "Chevrolet",
+        'Modelo' : 'Montana',
+        'Ano' : 2024
+    },
+    {
+        'Marca' : "Chevrolet",
+        'Modelo' : 'Equinox',
+        'Ano' : 2023
+    },
+    # Volksvagen
+    {
+        'Marca' : "Volksvagen",
+        'Modelo' : 'Gol',
+        'Ano' : 2022
+    },
+    {
+        'Marca' : "Volksvagen",
+        'Modelo' : 'Voyage',
+        'Ano' : 2021
+    },
+    {
+        'Marca' : "Volksvagen",
+        'Modelo' : 'Nivus',
+        'Ano' : 2023
+    },
+    {
+        'Marca' : "Volksvagen",
+        'Modelo' : 'Polo',
+        'Ano' : 2024
+    },
+    {
+        'Marca' : "Volksvagen",
+        'Modelo' : 'T-Cross',
+        'Ano' : 2023
+    },
+    {
+        'Marca' : "Volksvagen",
+        'Modelo' : 'Amarok',
+        'Ano' : 2024
+    },
+    # Hyundai
+    {
+        'Marca' : "Hyundai",
+        'Modelo' : 'HB20',
+        'Ano' : 2023
+    },
+    {
+        'Marca' : "Hyundai",
+        'Modelo' : 'Creta',
+        'Ano' : 2024
+    },
+    {
+        'Marca' : "Hyundai",
+        'Modelo' : 'Tucson',
+        'Ano' : 2022
+    },
+    {
+        'Marca' : "Hyundai",
+        'Modelo' : 'Azera',
+        'Ano' : 2021
+    },
+    {
+        'Marca' : "Hyundai",
+        'Modelo' : 'Santa Fe',
+        'Ano' : 2023
+    }
+        ]
 
-fipe = {
+fipe = [
+    {
         'Chevrolet' : [
             {'Onix': 69677},
             {'Tracker': 119000},
@@ -96,6 +179,7 @@ fipe = {
             {'Santa Fe': 310000}                  
         ]
     }
+        ]
 
 # Dicionario vazio criado para guardar temporariamente o cadastro do cliente
 cadastro = {
@@ -157,18 +241,27 @@ while True:
             • Se o cliente aceitar, o valor é adicionado ao saldo e o veículo entra na lista da empresa'''
             marcas("ESCOLHA UMA DAS OPPÇÕES ACEITAS")
             while True:
-                
-                marca_cliente = input(f"Informe qual é a marca do veiculo a ser vendido: ").capitalize()
-                if marca_cliente == 1:
-                    marca = 'Chevrolet'
+                while True:
+                    marca_cliente = input(f"Informe qual é a marca do veiculo a ser vendido: ").capitalize()
+                    if marca_cliente == 1:
+                        marca = 0
+                        break
+                    elif marca_cliente == 2:
+                        marca = 1
+                        break
+                    elif marca_cliente == 3:
+                        marca = 2
+                        break
+                    else:
+                        print("Opção invalida!")
                     
                     
-                    modelo_cliente = input(f"Informe o modelo do veiculo a ser negociado: ").capitalize()
-                    ano = input("Informe o ano do veiculo a ser vendido: [AAAA]")
-                        while True:
-                            if ano.isdigit() and len(ano) == 4:
-                                break
-                            else:
+                modelo_cliente = input(f"Informe o modelo do veiculo a ser negociado: ").capitalize()
+                ano = input("Informe o ano do veiculo a ser vendido: [AAAA]")
+                    while True:
+                        if ano.isdigit() and len(ano) == 4:
+                            break
+                        else:
                                 print("Formato de ano não aceito, tente novamente!")
                     else:
                         print("Não trabalhamos com essa marca\n")
