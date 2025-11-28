@@ -1,15 +1,22 @@
 #função para criar linha
 def mostrar_linha():
-    print(128 * "_")
+    l = 128 * "_"
+    lformatado = l[:80]
+    print(lformatado)
 
 #funcao para criar titulo
 def mostrar_titulo(titulo):
-    print(f" {30 * "="} {titulo} {30 * "="}")
+    t = f"{30 * "="} {titulo} {30 * "="}"
+    tformatado = t[:80]
+    print(tformatado)
 
 #função para mostrar menú
 def menu():
-    print(f"{30 * "="} {"ESCOLHA QUAL OPERÇÃO VOCÊ DESEJA APLICAR:"} {30 * "="}\n")
-    print(f"{30 * " "}1 - COMPRAR\n{30 * " "}2 - VENDER\n{30 * " "}3 - ALUGAR\n{30 * " "}0 - SAIR\n")
+    m = f"{30 * "="} {"ESCOLHA QUAL OPERÇÃO VOCÊ DESEJA APLICAR:"} {30 * "="}"
+    mformatado = m[:80]
+    print(mformatado)
+    print()
+    print(f"{30 * " "}1 - VENDER\n{30 * " "}2 - COMPRAR\n{30 * " "}3 - ALUGAR\n{30 * " "}0 - SAIR\n")
 
 #Função usada para que o usuario nao digite seus dados errados
 def cadastro_cliente():
@@ -40,19 +47,21 @@ def cadastro_cliente():
         
         break
 
-def marcas():
-    mostrar_titulo("MARCAS DISPONIVEIS")
-
-    for marca in fipe.keys():
-        print("")
 
 
+def marcas(texto):
+    mostrar_titulo(texto)
+    i = 1 #Contador para colocar numeração nas marcas
+    for k in fipe.keys():
+        print(f"{" " * 30}{i} - {k}")
+        i += 1
+    print(f"{" " * 30}0 - Sair")
     
 carros = [{
           'id' :'001',# id 001 serão carros a venda 
           'Marca' : "Chevrolet",
           'Modelo' : 'Onix',
-          'Ano' : '2022'
+          'Ano' : 2022
         }, 
         {
           'id': '001',
@@ -61,8 +70,7 @@ carros = [{
           'Ano' : 2023
         }]
 
-fipe = [
-    {
+fipe = {
         'Chevrolet' : [
             {'Onix': 69677},
             {'Tracker': 119000},
@@ -87,9 +95,8 @@ fipe = [
             {'Azera': 225000},
             {'Santa Fe': 310000}                  
         ]
-    },
-]
-print(fipe)
+    }
+
 # Dicionario vazio criado para guardar temporariamente o cadastro do cliente
 cadastro = {
 
@@ -98,7 +105,7 @@ cadastro = {
 mostrar_titulo("CADASTRO DE CLIENTES")
 
 #Codigo criado para adicionar as chaves e valores no dicionario cadastro = {}
-while True:
+'''while True:
     cadastro_cliente()
     #estrutura de repetição criada para mostrar os dados cadastrado
     mostrar_titulo("REVISÃO DE DADOS DO CLIENTE")
@@ -126,20 +133,21 @@ while True:
     else:
         print("\nOpção invalida, por favor digite apenas [S ou N]!")
         mostrar_linha()
-        print()
+        print()'''
 
 
 #Lista para guardar os dicionarios dos carros contendo: marca, modelo e km
 mostrar_linha()        
 
 mostrar_linha()
-#Codigo para escolher o tipo de transação
-mostrar_titulo(" MENÚ DE TRANSAÇÃO ")
-print("\n\n1 - Comprar\n 2 - Vender\n 3 - alugar\n 0 - cancelar\n\n")
-mostrar_linha()
-menu1 = int(input("Escolha uma das opções acima: "))
+
 while True:
+    #Codigo para escolher o tipo de transação
+    mostrar_titulo(" MENÚ DE TRANSAÇÃO ")
     menu()
+    mostrar_linha()
+    menu1 = int(input("Escolha uma das opções acima: "))
+    print()
     match menu1:
         case 1:
             ''' Venda de Veículos (Cliente → Empresa)
@@ -147,22 +155,35 @@ while True:
             • O sistema consulta o valor FIPE (armazenado em um dicionário).
             • A proposta da empresa deve ser o valor FIPE com 12% de desconto.
             • Se o cliente aceitar, o valor é adicionado ao saldo e o veículo entra na lista da empresa'''
+            marcas("ESCOLHA UMA DAS OPPÇÕES ACEITAS")
             while True:
-                while True:
-                    marca_cliente = input(f"Informe qual é a marca do veiculo a ser vendido: ").captalize()
-                    if marca_cliente in fipe.values():
-                        print("ENCONTRADO")
-                    break
+                
+                marca_cliente = input(f"Informe qual é a marca do veiculo a ser vendido: ").capitalize()
+                if marca_cliente == 1:
+                    marca = 'Chevrolet'
+                    
+                    
+                    modelo_cliente = input(f"Informe o modelo do veiculo a ser negociado: ").capitalize()
+                    ano = input("Informe o ano do veiculo a ser vendido: [AAAA]")
+                        while True:
+                            if ano.isdigit() and len(ano) == 4:
+                                break
+                            else:
+                                print("Formato de ano não aceito, tente novamente!")
+                    else:
+                        print("Não trabalhamos com essa marca\n")
+                        escolha = input(f"O que deseja fazer:\n{" " * 20}1 - Continuar a compra sem o veiculo na troca\n{" " * 20}2 - finalizar sessão")
+                        if escolha == 1:
+                            print("Continuando...")
+                            break
+                        else:
+                            print()
+                
                 break
-''' case 2:
-            while True:
-
-        case 3:
-
-        case 0:
-
+    
         case _:
-
+            print("Opcão invalida, tente novamente!")
+    break
 
 #Codigo para mostrar os modelos disponiveis para compra
 #Código para mostrar os modelos disponivies para aluguel 
