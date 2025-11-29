@@ -12,11 +12,15 @@ def mostrar_titulo(titulo):
 
 #função para mostrar menú
 def menu():
-    m = f"{30 * "="} {"ESCOLHA QUAL OPERÇÃO VOCÊ DESEJA APLICAR:"} {30 * "="}"
-    mformatado = m[:80]
-    print(mformatado)
-    print()
-    print(f"{30 * " "}1 - VENDER\n{30 * " "}2 - COMPRAR\n{30 * " "}3 - ALUGAR\n{30 * " "}0 - SAIR\n")
+    while True:
+        mostrar_titulo("MENU PRINCIPAL")
+        print("1 - Vender  veiculo")
+        print("2 - Comprar veiculo")
+        print("3 - Alugar veiculo")
+        print("0 - sair")
+        
+        match opc:
+
 
 #Função usada para que o usuario nao digite seus dados errados
 def cadastro_cliente():
@@ -46,7 +50,16 @@ def cadastro_cliente():
         cadastro['Telefone'] = telefone
         
         break
-
+def buscar_valor_fipe(marca_cliente, modelo_cliente, fipe_data):
+    """Busca o valor FIPE de um modelo e marca."""
+    for marca_dict in fipe_data:
+        if marca_cliente in marca_dict:
+            # Acessa a lista de modelos para a marca
+            modelos = marca_dict[marca_cliente]
+            for modelo_preco in modelos:
+                # O valor é o preço do modelo dentro do dicionário
+                if modelo_cliente in modelo_preco:
+                    return modelo_preco[modelo_cliente]
 
 
 def marcas(texto):
@@ -189,7 +202,7 @@ cadastro = {
 mostrar_titulo("CADASTRO DE CLIENTES")
 
 #Codigo criado para adicionar as chaves e valores no dicionario cadastro = {}
-'''while True:
+while True:
     cadastro_cliente()
     #estrutura de repetição criada para mostrar os dados cadastrado
     mostrar_titulo("REVISÃO DE DADOS DO CLIENTE")
@@ -217,13 +230,17 @@ mostrar_titulo("CADASTRO DE CLIENTES")
     else:
         print("\nOpção invalida, por favor digite apenas [S ou N]!")
         mostrar_linha()
-        print()'''
+        print()
 
 
 #Lista para guardar os dicionarios dos carros contendo: marca, modelo e km
 mostrar_linha()        
 
 mostrar_linha()
+
+def modelo_cliente():
+    modelo_cliente = input(f"Informe o modelo do veiculo a ser negociado: ").capitalize()
+    return modelo_cliente
 
 while True:
     #Codigo para escolher o tipo de transação
@@ -241,8 +258,10 @@ while True:
             • Se o cliente aceitar, o valor é adicionado ao saldo e o veículo entra na lista da empresa'''
             marcas("ESCOLHA UMA DAS OPPÇÕES ACEITAS")
             while True:
+                
                 while True:
-                    marca_cliente = input(f"Informe qual é a marca do veiculo a ser vendido: ").capitalize()
+                    marca_cliente = int(input(f"Informe qual é a marca do veiculo a ser vendido: "))
+                    
                     if marca_cliente == 1:
                         marca = 0
                         break
@@ -255,22 +274,14 @@ while True:
                     else:
                         print("Opção invalida!")
                     
-                    
-                modelo_cliente = input(f"Informe o modelo do veiculo a ser negociado: ").capitalize()
+                modelo_cliente()
+                
                 ano = input("Informe o ano do veiculo a ser vendido: [AAAA]")
-                    while True:
-                        if ano.isdigit() and len(ano) == 4:
-                            break
-                        else:
-                                print("Formato de ano não aceito, tente novamente!")
+                while True:
+                    if ano.isdigit() and len(ano) == 4:
+                        break
                     else:
-                        print("Não trabalhamos com essa marca\n")
-                        escolha = input(f"O que deseja fazer:\n{" " * 20}1 - Continuar a compra sem o veiculo na troca\n{" " * 20}2 - finalizar sessão")
-                        if escolha == 1:
-                            print("Continuando...")
-                            break
-                        else:
-                            print()
+                        print("Formato de ano não aceito, tente novamente!")    
                 
                 break
     
